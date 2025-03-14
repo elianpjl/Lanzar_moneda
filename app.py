@@ -53,3 +53,24 @@ if start_button:
 
 # Muestra la tabla con los resultados de todos los experimentos
 st.write(st.session_state['df_experiment_results'])
+
+st.title('Simulador de Lanzamiento de Moneda')
+st.write('Esta aplicación simula el lanzamiento de una moneda y muestra la media de los resultados en un gráfico.')
+
+import matplotlib.pyplot as plt
+
+# Crear un gráfico con matplotlib
+fig, ax = plt.subplots()
+ax.plot(range(len(results)), results, label='Media de los resultados')
+ax.set_xlabel('Número de intentos')
+ax.set_ylabel('Media')
+ax.legend()
+
+# Mostrar el gráfico en Streamlit
+st.pyplot(fig)
+if st.button('Reiniciar'):
+    st.session_state['experiment_no'] = 0
+    st.session_state['df_experiment_results'] = pd.DataFrame(columns=['no', 'iteraciones', 'media'])
+    st.write('Resultados reiniciados.')
+st.markdown('---')
+st.write('Desarrollado por [Tu Nombre] - [Enlace a tu GitHub](https://github.com/tu-usuario)')
